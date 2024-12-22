@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:sample_03/ui/color_styles.dart';
 import 'package:sample_03/ui/text_styles.dart';
 
-class BigButton extends StatefulWidget {
+class LargeButton extends StatefulWidget {
 
   final String text;
   final VoidCallback onPressed;
 
-  const BigButton({
+  const LargeButton({
     required this.text,
     required this.onPressed,
     super.key,
   });
 
   @override
-  State<BigButton> createState() => _BigButtonState();
+  State<LargeButton> createState() => _LargeButtonState();
 }
 
-class _BigButtonState extends State<BigButton> {
+class _LargeButtonState extends State<LargeButton> {
 
   bool _isPressed = false;
 
