@@ -1,8 +1,8 @@
 import 'package:sample_03/domain/repository/bookmark_repository.dart';
 
-class MockBookmarkRepository implements BookmarkRepository {
+class MockBookmarkRepositoryImpl implements BookmarkRepository {
 
-  final _mockData = <int>{2, 4};
+  final _mockData = <int>{1, 2, 4};
 
   @override
   Future<void> save(int id) async {

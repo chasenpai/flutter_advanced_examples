@@ -7,7 +7,7 @@ class GetSavedRecipesUseCase {
   final RecipeRepository _recipeRepository;
   final BookmarkRepository _bookmarkRepository;
 
-  GetSavedRecipesUseCase.name({
+  GetSavedRecipesUseCase({
     required RecipeRepository recipeRepository,
     required BookmarkRepository bookmarkRepository,
   }): _recipeRepository = recipeRepository,
