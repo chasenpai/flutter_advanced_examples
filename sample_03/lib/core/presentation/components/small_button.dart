@@ -6,10 +6,14 @@ class SmallButton extends StatefulWidget {
 
   final String text;
   final VoidCallback onPressed;
+  final Color color;
+  final TextStyle textStyle;
 
   const SmallButton({
     required this.text,
     required this.onPressed,
+    this.color = ColorStyles.primary100,
+    this.textStyle = TextStyles.normalTextBold,
     super.key,
   });
 
@@ -43,7 +47,7 @@ class _SmallButtonState extends State<SmallButton> {
       child: Container(
         height: 37,
         decoration: BoxDecoration(
-          color: _isPressed ? ColorStyles.grey4 : ColorStyles.primary100,
+          color: _isPressed ? ColorStyles.grey4 : widget.color,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(
@@ -51,7 +55,7 @@ class _SmallButtonState extends State<SmallButton> {
           children: [
             Text(
               widget.text,
-              style: TextStyles.normalTextBold.copyWith(
+              style: widget.textStyle.copyWith(
                 color: ColorStyles.white,
               ),
             ),
