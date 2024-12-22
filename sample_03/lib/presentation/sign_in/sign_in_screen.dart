@@ -5,7 +5,15 @@ import 'package:sample_03/ui/color_styles.dart';
 import 'package:sample_03/ui/text_styles.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+
+  final VoidCallback onSignInTap;
+  final VoidCallback onSignUpTap;
+
+  const SignInScreen({
+    required this.onSignInTap,
+    required this.onSignUpTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +53,7 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(height: 25.0,),
               LargeButton(
                 text: 'Sign In',
-                onPressed: () {
-
-                },
+                onPressed: onSignInTap,
               ),
               const SizedBox(height: 25.0,),
               Row(
@@ -98,10 +104,13 @@ class SignInScreen extends StatelessWidget {
                     "Don't have an account? ",
                     style: TextStyles.smallerTextBold,
                   ),
-                  Text(
-                    "Sign up",
-                    style: TextStyles.smallerTextBold.copyWith(
-                      color: ColorStyles.secondary100,
+                  GestureDetector(
+                    onTap: onSignUpTap,
+                    child: Text(
+                      "Sign up",
+                      style: TextStyles.smallerTextBold.copyWith(
+                        color: ColorStyles.secondary100,
+                      ),
                     ),
                   ),
                 ],
