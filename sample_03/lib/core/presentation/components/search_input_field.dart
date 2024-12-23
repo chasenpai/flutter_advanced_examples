@@ -26,19 +26,19 @@ class SearchInputField extends StatelessWidget {
         controller: controller,
         onChanged: onChanged,
         decoration: InputDecoration(
-          prefixIcon: Icon(
+          prefixIcon: const Icon(
             Icons.search,
             color: ColorStyles.grey4,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: ColorStyles.grey4,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: ColorStyles.primary80,
             ),
           ),

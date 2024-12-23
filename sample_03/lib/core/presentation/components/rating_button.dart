@@ -34,7 +34,7 @@ class RatingButton extends StatelessWidget {
           ),
         ],
       ),
-      side: BorderSide(
+      side: const BorderSide(
         color: ColorStyles.primary100,
       ),
       shape: RoundedRectangleBorder(

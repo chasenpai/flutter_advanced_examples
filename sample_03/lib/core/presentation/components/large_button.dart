@@ -56,7 +56,7 @@ class _LargeButtonState extends State<LargeButton> {
               ),
             ),
             const SizedBox(width: 11.0,),
-            Icon(
+            const Icon(
               Icons.arrow_forward,
               size: 20.0,
               color: ColorStyles.white,

@@ -22,7 +22,7 @@ class RootScreen extends StatelessWidget {
         indicatorColor: Colors.transparent,
         onDestinationSelected: (index) => onPageChanged(index),
         selectedIndex: currentPageIndex,
-        destinations: [
+        destinations: const [
           NavigationDestination(
             icon: Icon(
               Icons.home_outlined,

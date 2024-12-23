@@ -16,7 +16,7 @@ class SearchRecipesViewModel with ChangeNotifier {
     _loadRecentSearchRecipes();
   }
 
-  SearchRecipesState _state = SearchRecipesState();
+  SearchRecipesState _state = const SearchRecipesState();
 
   SearchRecipesState get state => _state;
 

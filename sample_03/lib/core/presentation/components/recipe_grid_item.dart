@@ -68,7 +68,7 @@ class RecipeGridItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.star,
                     color: ColorStyles.rating,
                     size: 12.0,

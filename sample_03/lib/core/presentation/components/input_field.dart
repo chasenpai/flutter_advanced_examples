@@ -30,13 +30,13 @@ class InputField extends StatelessWidget {
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: ColorStyles.grey4,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: ColorStyles.primary80,
               ),
             ),

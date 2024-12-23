@@ -40,7 +40,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 31.0,),
-          SizedBox(
+          const SizedBox(
             width: double.infinity,
             child: Text(
               'Filter Search',
@@ -49,7 +49,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             ),
           ),
           const SizedBox(height: 20.0,),
-          Text(
+          const Text(
             'Time',
             style: TextStyles.smallTextBold,
           ),
@@ -71,7 +71,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             },
           ),
           const SizedBox(height: 20.0,),
-          Text(
+          const Text(
             'Rate',
             style: TextStyles.smallTextBold,
           ),
@@ -94,7 +94,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             },
           ),
           const SizedBox(height: 20.0,),
-          Text(
+          const Text(
             'Category',
             style: TextStyles.smallTextBold,
           ),

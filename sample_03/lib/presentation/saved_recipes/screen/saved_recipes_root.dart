@@ -14,7 +14,7 @@ class SavedRecipesRoot extends StatelessWidget {
       builder: (context, widget) {
         final state = viewModel.state;
         if(state.isLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }

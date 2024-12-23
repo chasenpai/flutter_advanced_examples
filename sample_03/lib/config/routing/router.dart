@@ -35,7 +35,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: RoutePaths.searchRecipes,
-      builder: (context, state) => SearchRecipesRoot(),
+      builder: (context, state) => const SearchRecipesRoot(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -55,7 +55,7 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.home,
-              builder: (context, state) => HomeRoot(),
+              builder: (context, state) => const HomeRoot(),
             ),
           ],
         ),
@@ -63,7 +63,7 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.savedRecipes,
-              builder: (context, state) => SavedRecipesRoot(),
+              builder: (context, state) => const SavedRecipesRoot(),
             ),
           ],
         ),
@@ -71,7 +71,7 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.notifications,
-              builder: (context, state) => NotificationsScreen(),
+              builder: (context, state) => const NotificationsScreen(),
             ),
           ],
         ),
@@ -79,7 +79,7 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.profile,
-              builder: (context, state) => ProfileScreen(),
+              builder: (context, state) => const ProfileScreen(),
             ),
           ],
         ),

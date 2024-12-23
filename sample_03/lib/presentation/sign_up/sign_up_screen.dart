@@ -36,9 +36,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   'Create an account',
                   style: TextStyles.largeTextBold,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 200.0,
-                  child: const Text(
+                  child: Text(
                     "Let's help you set up your account, it won't take long.",
                     style: TextStyles.smallerTextRegular,
                   ),
@@ -71,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      side: BorderSide(
+                      side: const BorderSide(
                         width: 1.0,
                         color: ColorStyles.secondary100,
                       ),
@@ -142,7 +142,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Already a member? ",
                       style: TextStyles.smallerTextBold,
                     ),

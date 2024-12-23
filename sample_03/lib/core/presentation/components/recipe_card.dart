@@ -63,7 +63,7 @@ class RecipeCard extends StatelessWidget {
             bottom: 10,
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.alarm,
                   color: ColorStyles.white,
                   size: 17.0,
@@ -80,7 +80,7 @@ class RecipeCard extends StatelessWidget {
                   child: Container(
                     color: ColorStyles.white,
                     padding: const EdgeInsets.all(3.0),
-                    child: Icon(
+                    child: const Icon(
                       Icons.bookmark_border_outlined,
                       color: ColorStyles.primary80,
                       size: 16.0,
@@ -103,7 +103,7 @@ class RecipeCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.star,
                     color: ColorStyles.rating,
                     size: 12.0,

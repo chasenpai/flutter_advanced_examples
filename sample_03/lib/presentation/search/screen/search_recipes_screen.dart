@@ -22,7 +22,7 @@ class SearchRecipesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Search recipes',
           style: TextStyles.mediumTextBold,
         ),
@@ -55,7 +55,7 @@ class SearchRecipesScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                       color: ColorStyles.primary100,
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.tune,
                       color: ColorStyles.white,
                       size: 22.0,
@@ -83,9 +83,9 @@ class SearchRecipesScreen extends StatelessWidget {
             const SizedBox(height: 20.0,),
             Expanded(
               child: state.isLoading
-                ? Center(child: CircularProgressIndicator(),)
+                ? const Center(child: CircularProgressIndicator(),)
                 : GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 15.0,
                     ),
