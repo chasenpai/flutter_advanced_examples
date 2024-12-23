@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchRecipesState {
   List<Recipe> get recipes => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get recipesCount => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchRecipesState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +34,11 @@ abstract class $SearchRecipesStateCopyWith<$Res> {
           SearchRecipesState value, $Res Function(SearchRecipesState) then) =
       _$SearchRecipesStateCopyWithImpl<$Res, SearchRecipesState>;
   @useResult
-  $Res call({List<Recipe> recipes, bool isLoading});
+  $Res call(
+      {List<Recipe> recipes,
+      bool isLoading,
+      String title,
+      String recipesCount});
 }
 
 /// @nodoc
@@ -52,6 +58,8 @@ class _$SearchRecipesStateCopyWithImpl<$Res, $Val extends SearchRecipesState>
   $Res call({
     Object? recipes = null,
     Object? isLoading = null,
+    Object? title = null,
+    Object? recipesCount = null,
   }) {
     return _then(_value.copyWith(
       recipes: null == recipes
@@ -62,6 +70,14 @@ class _$SearchRecipesStateCopyWithImpl<$Res, $Val extends SearchRecipesState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      recipesCount: null == recipesCount
+          ? _value.recipesCount
+          : recipesCount // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -74,7 +90,11 @@ abstract class _$$SearchRecipesStateImplCopyWith<$Res>
       __$$SearchRecipesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Recipe> recipes, bool isLoading});
+  $Res call(
+      {List<Recipe> recipes,
+      bool isLoading,
+      String title,
+      String recipesCount});
 }
 
 /// @nodoc
@@ -92,6 +112,8 @@ class __$$SearchRecipesStateImplCopyWithImpl<$Res>
   $Res call({
     Object? recipes = null,
     Object? isLoading = null,
+    Object? title = null,
+    Object? recipesCount = null,
   }) {
     return _then(_$SearchRecipesStateImpl(
       recipes: null == recipes
@@ -102,6 +124,14 @@ class __$$SearchRecipesStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      recipesCount: null == recipesCount
+          ? _value.recipesCount
+          : recipesCount // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -110,7 +140,10 @@ class __$$SearchRecipesStateImplCopyWithImpl<$Res>
 
 class _$SearchRecipesStateImpl implements _SearchRecipesState {
   const _$SearchRecipesStateImpl(
-      {final List<Recipe> recipes = const [], this.isLoading = false})
+      {final List<Recipe> recipes = const [],
+      this.isLoading = false,
+      this.title = 'Recent Search',
+      this.recipesCount = ''})
       : _recipes = recipes;
 
   final List<Recipe> _recipes;
@@ -125,10 +158,16 @@ class _$SearchRecipesStateImpl implements _SearchRecipesState {
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final String title;
+  @override
+  @JsonKey()
+  final String recipesCount;
 
   @override
   String toString() {
-    return 'SearchRecipesState(recipes: $recipes, isLoading: $isLoading)';
+    return 'SearchRecipesState(recipes: $recipes, isLoading: $isLoading, title: $title, recipesCount: $recipesCount)';
   }
 
   @override
@@ -138,12 +177,19 @@ class _$SearchRecipesStateImpl implements _SearchRecipesState {
             other is _$SearchRecipesStateImpl &&
             const DeepCollectionEquality().equals(other._recipes, _recipes) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.recipesCount, recipesCount) ||
+                other.recipesCount == recipesCount));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_recipes), isLoading);
+      runtimeType,
+      const DeepCollectionEquality().hash(_recipes),
+      isLoading,
+      title,
+      recipesCount);
 
   /// Create a copy of SearchRecipesState
   /// with the given fields replaced by the non-null parameter values.
@@ -158,12 +204,18 @@ class _$SearchRecipesStateImpl implements _SearchRecipesState {
 abstract class _SearchRecipesState implements SearchRecipesState {
   const factory _SearchRecipesState(
       {final List<Recipe> recipes,
-      final bool isLoading}) = _$SearchRecipesStateImpl;
+      final bool isLoading,
+      final String title,
+      final String recipesCount}) = _$SearchRecipesStateImpl;
 
   @override
   List<Recipe> get recipes;
   @override
   bool get isLoading;
+  @override
+  String get title;
+  @override
+  String get recipesCount;
 
   /// Create a copy of SearchRecipesState
   /// with the given fields replaced by the non-null parameter values.

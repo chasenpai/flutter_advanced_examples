@@ -8,5 +8,7 @@ class SearchRecipesState with _$SearchRecipesState {
   const factory SearchRecipesState({
     @Default([]) List<Recipe> recipes,
     @Default(false) bool isLoading,
+    @Default('Recent Search') String title,
+    @Default('') String recipesCount,
   }) = _SearchRecipesState;
 }

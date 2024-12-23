@@ -60,9 +60,20 @@ class SearchRecipesScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20.0,),
-            Text(
-              'Recent Search',
-              style: TextStyles.normalTextBold,
+            Row(
+              children: [
+                Text(
+                  state.title,
+                  style: TextStyles.normalTextBold,
+                ),
+                const Spacer(),
+                Text(
+                  state.recipesCount,
+                  style: TextStyles.smallerTextRegular.copyWith(
+                    color: ColorStyles.grey3
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20.0,),
             Expanded(

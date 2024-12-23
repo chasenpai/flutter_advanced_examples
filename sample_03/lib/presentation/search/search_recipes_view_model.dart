@@ -25,6 +25,7 @@ class SearchRecipesViewModel with ChangeNotifier {
     );
     notifyListeners();
     final recipes = await _recentSearchRecipeRepository.getRecentSearchRecipes();
+    print(recipes);
     _state = state.copyWith(
       recipes: recipes,
       isLoading: false,
@@ -41,6 +42,8 @@ class SearchRecipesViewModel with ChangeNotifier {
     _state = _state.copyWith(
       isLoading: false,
       recipes: recipes,
+      title: 'Search Result',
+      recipesCount: '${recipes.length} results',
     );
     notifyListeners();
   }
