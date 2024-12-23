@@ -25,7 +25,6 @@ class SearchRecipesViewModel with ChangeNotifier {
     );
     notifyListeners();
     final recipes = await _recentSearchRecipeRepository.getRecentSearchRecipes();
-    print(recipes);
     _state = state.copyWith(
       recipes: recipes,
       isLoading: false,

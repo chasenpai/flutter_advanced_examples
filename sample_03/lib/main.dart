@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sample_03/config/di/di_setup.dart';
 import 'package:sample_03/config/routing/router.dart';
 
 void main() {
+  diSetup();
   runApp(const MyApp());
 }
 
