@@ -9,10 +9,12 @@ class SearchRecipesScreen extends StatelessWidget {
 
   final SearchRecipesState state;
   final ValueChanged<String> onChanged;
+  final VoidCallback onFilterTap;
 
   const SearchRecipesScreen({
     required this.state,
     required this.onChanged,
+    required this.onFilterTap,
     super.key,
   });
 
@@ -44,17 +46,20 @@ class SearchRecipesScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 20.0,),
-                Container(
-                  height: 40.0,
-                  width: 40.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: ColorStyles.primary100,
-                  ),
-                  child: Icon(
-                    Icons.tune,
-                    color: ColorStyles.white,
-                    size: 22.0,
+                GestureDetector(
+                  onTap: onFilterTap,
+                  child: Container(
+                    height: 40.0,
+                    width: 40.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: ColorStyles.primary100,
+                    ),
+                    child: Icon(
+                      Icons.tune,
+                      color: ColorStyles.white,
+                      size: 22.0,
+                    ),
                   ),
                 ),
               ],

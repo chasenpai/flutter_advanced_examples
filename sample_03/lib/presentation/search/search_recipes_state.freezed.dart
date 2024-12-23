@@ -20,6 +20,8 @@ mixin _$SearchRecipesState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get recipesCount => throw _privateConstructorUsedError;
+  FilterState get filterState => throw _privateConstructorUsedError;
+  String get query => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchRecipesState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +40,11 @@ abstract class $SearchRecipesStateCopyWith<$Res> {
       {List<Recipe> recipes,
       bool isLoading,
       String title,
-      String recipesCount});
+      String recipesCount,
+      FilterState filterState,
+      String query});
+
+  $FilterStateCopyWith<$Res> get filterState;
 }
 
 /// @nodoc
@@ -60,6 +66,8 @@ class _$SearchRecipesStateCopyWithImpl<$Res, $Val extends SearchRecipesState>
     Object? isLoading = null,
     Object? title = null,
     Object? recipesCount = null,
+    Object? filterState = null,
+    Object? query = null,
   }) {
     return _then(_value.copyWith(
       recipes: null == recipes
@@ -78,7 +86,25 @@ class _$SearchRecipesStateCopyWithImpl<$Res, $Val extends SearchRecipesState>
           ? _value.recipesCount
           : recipesCount // ignore: cast_nullable_to_non_nullable
               as String,
+      filterState: null == filterState
+          ? _value.filterState
+          : filterState // ignore: cast_nullable_to_non_nullable
+              as FilterState,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
+  }
+
+  /// Create a copy of SearchRecipesState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FilterStateCopyWith<$Res> get filterState {
+    return $FilterStateCopyWith<$Res>(_value.filterState, (value) {
+      return _then(_value.copyWith(filterState: value) as $Val);
+    });
   }
 }
 
@@ -94,7 +120,12 @@ abstract class _$$SearchRecipesStateImplCopyWith<$Res>
       {List<Recipe> recipes,
       bool isLoading,
       String title,
-      String recipesCount});
+      String recipesCount,
+      FilterState filterState,
+      String query});
+
+  @override
+  $FilterStateCopyWith<$Res> get filterState;
 }
 
 /// @nodoc
@@ -114,6 +145,8 @@ class __$$SearchRecipesStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? title = null,
     Object? recipesCount = null,
+    Object? filterState = null,
+    Object? query = null,
   }) {
     return _then(_$SearchRecipesStateImpl(
       recipes: null == recipes
@@ -132,6 +165,14 @@ class __$$SearchRecipesStateImplCopyWithImpl<$Res>
           ? _value.recipesCount
           : recipesCount // ignore: cast_nullable_to_non_nullable
               as String,
+      filterState: null == filterState
+          ? _value.filterState
+          : filterState // ignore: cast_nullable_to_non_nullable
+              as FilterState,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -143,7 +184,10 @@ class _$SearchRecipesStateImpl implements _SearchRecipesState {
       {final List<Recipe> recipes = const [],
       this.isLoading = false,
       this.title = 'Recent Search',
-      this.recipesCount = ''})
+      this.recipesCount = '',
+      this.filterState =
+          const FilterState(time: 'All', rate: 1, category: 'All'),
+      this.query = ''})
       : _recipes = recipes;
 
   final List<Recipe> _recipes;
@@ -164,10 +208,16 @@ class _$SearchRecipesStateImpl implements _SearchRecipesState {
   @override
   @JsonKey()
   final String recipesCount;
+  @override
+  @JsonKey()
+  final FilterState filterState;
+  @override
+  @JsonKey()
+  final String query;
 
   @override
   String toString() {
-    return 'SearchRecipesState(recipes: $recipes, isLoading: $isLoading, title: $title, recipesCount: $recipesCount)';
+    return 'SearchRecipesState(recipes: $recipes, isLoading: $isLoading, title: $title, recipesCount: $recipesCount, filterState: $filterState, query: $query)';
   }
 
   @override
@@ -180,7 +230,10 @@ class _$SearchRecipesStateImpl implements _SearchRecipesState {
                 other.isLoading == isLoading) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.recipesCount, recipesCount) ||
-                other.recipesCount == recipesCount));
+                other.recipesCount == recipesCount) &&
+            (identical(other.filterState, filterState) ||
+                other.filterState == filterState) &&
+            (identical(other.query, query) || other.query == query));
   }
 
   @override
@@ -189,7 +242,9 @@ class _$SearchRecipesStateImpl implements _SearchRecipesState {
       const DeepCollectionEquality().hash(_recipes),
       isLoading,
       title,
-      recipesCount);
+      recipesCount,
+      filterState,
+      query);
 
   /// Create a copy of SearchRecipesState
   /// with the given fields replaced by the non-null parameter values.
@@ -206,7 +261,9 @@ abstract class _SearchRecipesState implements SearchRecipesState {
       {final List<Recipe> recipes,
       final bool isLoading,
       final String title,
-      final String recipesCount}) = _$SearchRecipesStateImpl;
+      final String recipesCount,
+      final FilterState filterState,
+      final String query}) = _$SearchRecipesStateImpl;
 
   @override
   List<Recipe> get recipes;
@@ -216,6 +273,10 @@ abstract class _SearchRecipesState implements SearchRecipesState {
   String get title;
   @override
   String get recipesCount;
+  @override
+  FilterState get filterState;
+  @override
+  String get query;
 
   /// Create a copy of SearchRecipesState
   /// with the given fields replaced by the non-null parameter values.
