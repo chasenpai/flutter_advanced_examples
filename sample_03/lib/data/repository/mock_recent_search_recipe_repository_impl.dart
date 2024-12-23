@@ -1,25 +1,25 @@
 import 'package:sample_03/domain/data_source/recipe_data_source.dart';
 import 'package:sample_03/domain/model/recipe.dart';
-import 'package:sample_03/domain/repository/recipe_repository.dart';
+import 'package:sample_03/domain/repository/recent_search_recipe_repository.dart';
 
-class MockRecipeRepositoryImpl implements RecipeRepository {
+class MockRecentSearchRecipeRepositoryImpl implements RecentSearchRecipeRepository {
 
   final RecipeDataSource _recipeDataSource;
 
-  MockRecipeRepositoryImpl({
+  MockRecentSearchRecipeRepositoryImpl({
     required RecipeDataSource recipeDataSource,
   }): _recipeDataSource = recipeDataSource;
 
   @override
-  Future<List<Recipe>> getRecipes() async {
+  Future<List<Recipe>> getRecentSearchRecipes() async {
     final recipes = await _recipeDataSource.getRecipes();
     return recipes.map((e) => Recipe.fromJson(e)).toList();
   }
 
   @override
-  Future<Recipe?> getRecipe(int id) async {
-    final recipes = await getRecipes();
-    return recipes.where((e) => e.id == id).firstOrNull;
+  Future<void> updateRecentSearchRecipes(List<Recipe> recipes) async {
+    // TODO: implement updateRecentSearchRecipes
+    throw UnimplementedError();
   }
 
 }

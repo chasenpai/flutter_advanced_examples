@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_03/data/data_source/remote/remote_recipe_data_source.dart';
 import 'package:sample_03/data/repository/mock_bookmark_repository_impl.dart';
 import 'package:sample_03/data/repository/mock_recipe_repository_impl.dart';
 import 'package:sample_03/domain/use_case/get_saved_recipes_use_case.dart';
@@ -6,7 +7,9 @@ import 'package:sample_03/presentation/saved_recipes/saved_recipes_view_model.da
 import 'package:sample_03/presentation/saved_recipes/screen/saved_recipes_screen.dart';
 
 final _getSavedRecipesUseCase = GetSavedRecipesUseCase(
-  recipeRepository: MockRecipeRepositoryImpl(),
+  recipeRepository: MockRecipeRepositoryImpl(
+    recipeDataSource: RemoteRecipeDataSourceImpl(),
+  ),
   bookmarkRepository: MockBookmarkRepositoryImpl(),
 );
 

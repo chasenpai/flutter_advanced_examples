@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sample_03/domain/model/recipe.dart';
 import 'package:sample_03/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:sample_03/presentation/saved_recipes/saved_recipes_state.dart';
 
