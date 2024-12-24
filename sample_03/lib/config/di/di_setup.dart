@@ -11,6 +11,7 @@ import 'package:sample_03/domain/repository/recent_search_recipe_repository.dart
 import 'package:sample_03/domain/repository/recipe_repository.dart';
 import 'package:sample_03/domain/use_case/get_categories_use_case.dart';
 import 'package:sample_03/domain/use_case/get_dishes_by_category_use_case.dart';
+import 'package:sample_03/domain/use_case/get_new_recipes_use_case.dart';
 import 'package:sample_03/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:sample_03/domain/use_case/search_recipes_use_case.dart';
 import 'package:sample_03/presentation/home/home_view_model.dart';
@@ -66,6 +67,11 @@ void diSetup() {
       recipeRepository: getIt(),
     ),
   );
+  getIt.registerSingleton<GetNewRecipesUseCase>(
+    GetNewRecipesUseCase(
+      recipeRepository: getIt(),
+    ),
+  );
 
   //view model
   getIt.registerFactory<SavedRecipesViewModel>(
@@ -83,6 +89,7 @@ void diSetup() {
     () => HomeViewModel(
       getCategoriesUseCase: getIt(),
       getDishesByCategoryUseCase: getIt(),
+      getNewRecipesUseCase: getIt(),
     ),
   );
 }
