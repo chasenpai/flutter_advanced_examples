@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
+import 'package:sample_03/core/domain/error/network_error.dart';
+import 'package:sample_03/core/domain/error/result.dart';
 import 'package:sample_03/domain/use_case/get_categories_use_case.dart';
 import 'package:sample_03/domain/use_case/get_dishes_by_category_use_case.dart';
 import 'package:sample_03/presentation/home/home_state.dart';
@@ -17,21 +21,28 @@ class HomeViewModel with ChangeNotifier {
   }
 
   HomeState _state = const HomeState();
-
   HomeState get state => _state;
+
+  final _eventController = StreamController<NetworkError>(); //단발성 일 때..?
+  Stream<NetworkError> get eventStream => _eventController.stream;
 
   void _loadCategories() async {
     _state = _state.copyWith(
       isLoading: true,
     );
     notifyListeners();
-    final categories = await _getCategoriesUseCase.execute();
-    _state = _state.copyWith(
-      isLoading: false,
-      categories: categories,
-    );
-    notifyListeners();
-    await _fetchDishesByCategory('All');
+    final result = await _getCategoriesUseCase.execute();
+    switch(result) {
+      case Success<List<String>, NetworkError>():
+        _state = _state.copyWith(
+          isLoading: false,
+          categories: result.data,
+        );
+        notifyListeners();
+        await _fetchDishesByCategory('All');
+      case Failure<List<String>, NetworkError>():
+        _eventController.add(result.error);
+    }
   }
 
   void onCategorySelected(String category) async {
