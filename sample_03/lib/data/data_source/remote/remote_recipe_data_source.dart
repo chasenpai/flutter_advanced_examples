@@ -278,7 +278,6 @@ class RemoteRecipeDataSourceImpl implements RecipeDataSource {
 
   @override
   Future<List<Map<String, dynamic>>> getRecipes() async {
-    await Future.delayed(const Duration(milliseconds: 500));
     return _mockData['recipes']!;
   }
 

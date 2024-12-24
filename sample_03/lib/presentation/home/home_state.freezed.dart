@@ -19,6 +19,7 @@ mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get selectedCategory => throw _privateConstructorUsedError;
   List<String> get categories => throw _privateConstructorUsedError;
+  List<Recipe> get dishes => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,11 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isLoading, String selectedCategory, List<String> categories});
+  $Res call(
+      {bool isLoading,
+      String selectedCategory,
+      List<String> categories,
+      List<Recipe> dishes});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? isLoading = null,
     Object? selectedCategory = null,
     Object? categories = null,
+    Object? dishes = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -67,6 +73,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      dishes: null == dishes
+          ? _value.dishes
+          : dishes // ignore: cast_nullable_to_non_nullable
+              as List<Recipe>,
     ) as $Val);
   }
 }
@@ -79,7 +89,11 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, String selectedCategory, List<String> categories});
+  $Res call(
+      {bool isLoading,
+      String selectedCategory,
+      List<String> categories,
+      List<Recipe> dishes});
 }
 
 /// @nodoc
@@ -98,6 +112,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? selectedCategory = null,
     Object? categories = null,
+    Object? dishes = null,
   }) {
     return _then(_$HomeStateImpl(
       isLoading: null == isLoading
@@ -112,6 +127,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      dishes: null == dishes
+          ? _value._dishes
+          : dishes // ignore: cast_nullable_to_non_nullable
+              as List<Recipe>,
     ));
   }
 }
@@ -122,8 +141,10 @@ class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
       {this.isLoading = false,
       this.selectedCategory = 'All',
-      final List<String> categories = const []})
-      : _categories = categories;
+      final List<String> categories = const [],
+      final List<Recipe> dishes = const []})
+      : _categories = categories,
+        _dishes = dishes;
 
   @override
   @JsonKey()
@@ -140,9 +161,18 @@ class _$HomeStateImpl implements _HomeState {
     return EqualUnmodifiableListView(_categories);
   }
 
+  final List<Recipe> _dishes;
+  @override
+  @JsonKey()
+  List<Recipe> get dishes {
+    if (_dishes is EqualUnmodifiableListView) return _dishes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dishes);
+  }
+
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, selectedCategory: $selectedCategory, categories: $categories)';
+    return 'HomeState(isLoading: $isLoading, selectedCategory: $selectedCategory, categories: $categories, dishes: $dishes)';
   }
 
   @override
@@ -155,12 +185,17 @@ class _$HomeStateImpl implements _HomeState {
             (identical(other.selectedCategory, selectedCategory) ||
                 other.selectedCategory == selectedCategory) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            const DeepCollectionEquality().equals(other._dishes, _dishes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, selectedCategory,
-      const DeepCollectionEquality().hash(_categories));
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      selectedCategory,
+      const DeepCollectionEquality().hash(_categories),
+      const DeepCollectionEquality().hash(_dishes));
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -175,7 +210,8 @@ abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final bool isLoading,
       final String selectedCategory,
-      final List<String> categories}) = _$HomeStateImpl;
+      final List<String> categories,
+      final List<Recipe> dishes}) = _$HomeStateImpl;
 
   @override
   bool get isLoading;
@@ -183,6 +219,8 @@ abstract class _HomeState implements HomeState {
   String get selectedCategory;
   @override
   List<String> get categories;
+  @override
+  List<Recipe> get dishes;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
