@@ -10,4 +10,7 @@ sealed class IngredientAction with _$IngredientAction{
   const factory IngredientAction.onProcedureTap() = OnProcedureTap;
   const factory IngredientAction.onFollowTap(Recipe recipe) = OnFollowTap;
   const factory IngredientAction.loadRecipe(int recipeId) = LoadRecipe;
+  const factory IngredientAction.onShareTap(String link) = OnShareTap;
+  const factory IngredientAction.onRateTap(Recipe recipe, int rate) = OnRateTap;
+  const factory IngredientAction.onUnsaveTap(Recipe recipe) = OnUnsaveTap;
 }

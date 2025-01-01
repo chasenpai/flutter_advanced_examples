@@ -46,7 +46,7 @@ class _RatingDialogState extends State<RatingDialog> {
           text: widget.buttonText,
           color: ColorStyles.rating,
           textStyle: TextStyles.smallerTextRegular,
-          onPressed: () {
+          onPressed: _value == 0 ? null : () {
             widget.onChanged(_value);
           },
         ),

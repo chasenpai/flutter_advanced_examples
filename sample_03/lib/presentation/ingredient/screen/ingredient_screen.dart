@@ -9,21 +9,107 @@ import 'package:sample_03/presentation/ingredient/ingredient_state.dart';
 import 'package:sample_03/ui/color_styles.dart';
 import 'package:sample_03/ui/text_styles.dart';
 
+enum IngredientMenu{
+  share,
+  rate,
+  review,
+  unSave,
+}
+
 class IngredientScreen extends StatelessWidget {
 
   final IngredientState state;
   final void Function(IngredientAction action) onAction;
+  final void Function(IngredientMenu menu) onMenuTap;
 
   const IngredientScreen({
     required this.state,
     required this.onAction,
+    required this.onMenuTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        actions: [
+          PopupMenuButton(
+            icon: const Icon(
+              Icons.more_horiz,
+            ),
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  onTap: () => onMenuTap(IngredientMenu.share),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.share,
+                        size: 20.0,
+                      ),
+                      SizedBox(width: 16.0,),
+                      Text(
+                        'Share',
+                        style: TextStyles.smallTextRegular,
+                      ),
+                    ],
+                  ),
+                ),
+                PopupMenuItem(
+                  onTap: () => onMenuTap(IngredientMenu.rate),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        size: 20.0,
+                      ),
+                      SizedBox(width: 16.0,),
+                      Text(
+                        'Rate',
+                        style: TextStyles.smallTextRegular,
+                      ),
+                    ],
+                  ),
+                ),
+                PopupMenuItem(
+                  onTap: () => onMenuTap(IngredientMenu.review),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.comment,
+                        size: 20.0,
+                      ),
+                      SizedBox(width: 16.0,),
+                      Text(
+                        'Review',
+                        style: TextStyles.smallTextRegular,
+                      ),
+                    ],
+                  ),
+                ),
+                PopupMenuItem(
+                  onTap: () => onMenuTap(IngredientMenu.unSave),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.bookmark,
+                        size: 20.0,
+                      ),
+                      SizedBox(width: 16.0,),
+                      Text(
+                        'Unsave',
+                        style: TextStyles.smallTextRegular,
+                      ),
+                    ],
+                  ),
+                ),
+              ];
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(

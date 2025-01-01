@@ -5,7 +5,7 @@ import 'package:sample_03/ui/text_styles.dart';
 class SmallButton extends StatefulWidget {
 
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color color;
   final TextStyle textStyle;
 
@@ -13,7 +13,7 @@ class SmallButton extends StatefulWidget {
     required this.text,
     required this.onPressed,
     this.color = ColorStyles.primary100,
-    this.textStyle = TextStyles.normalTextBold,
+    this.textStyle = TextStyles.smallerTextBold,
     super.key,
   });
 
@@ -27,19 +27,22 @@ class _SmallButtonState extends State<SmallButton> {
 
   @override
   Widget build(BuildContext context) {
+    final buttonColor = widget.onPressed == null
+      ? ColorStyles.grey4
+      : (_isPressed ? ColorStyles.grey4 : widget.color);
     return GestureDetector(
-      onTapDown: (_) {
+      onTapDown: widget.onPressed == null ? null : (_) {
         setState(() {
           _isPressed = true;
         });
       },
-      onTapUp: (_) {
+      onTapUp: widget.onPressed == null ? null : (_) {
         setState(() {
           _isPressed = false;
         });
-        widget.onPressed();
+        widget.onPressed?.call();
       },
-      onTapCancel: () {
+      onTapCancel: widget.onPressed == null ? null : () {
         setState(() {
           _isPressed = false;
         });
@@ -47,7 +50,7 @@ class _SmallButtonState extends State<SmallButton> {
       child: Container(
         height: 37,
         decoration: BoxDecoration(
-          color: _isPressed ? ColorStyles.grey4 : widget.color,
+          color: buttonColor,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(

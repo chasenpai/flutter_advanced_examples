@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
+import 'package:sample_03/domain/clipboard/clipboard_service.dart';
 import 'package:sample_03/domain/repository/ingredient_repository.dart';
 import 'package:sample_03/domain/repository/procedure_repository.dart';
 import 'package:sample_03/domain/use_case/get_dishes_by_category_use_case.dart';
@@ -10,14 +13,17 @@ class IngredientViewModel with ChangeNotifier {
   final IngredientRepository _ingredientRepository;
   final ProcedureRepository _procedureRepository;
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
+  final ClipboardService _clipboardService;
 
   IngredientViewModel({
     required IngredientRepository ingredientRepository,
     required ProcedureRepository procedureRepository,
     required GetDishesByCategoryUseCase getDishesByCategoryUseCase,
+    required ClipboardService clipboardService,
   }): _ingredientRepository = ingredientRepository,
       _procedureRepository = procedureRepository,
-      _getDishesByCategoryUseCase = getDishesByCategoryUseCase;
+      _getDishesByCategoryUseCase = getDishesByCategoryUseCase,
+      _clipboardService = clipboardService;
 
   IngredientState _state = const IngredientState();
   IngredientState get state => _state;
@@ -42,6 +48,13 @@ class IngredientViewModel with ChangeNotifier {
         throw UnimplementedError();
       case LoadRecipe():
         _loadRecipe(action.recipeId);
+      case OnShareTap():
+        _clipboardService.copyText(action.link);
+      case OnRateTap():
+        log(action.rate as String);
+      case OnUnsaveTap():
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 
