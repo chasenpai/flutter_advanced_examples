@@ -6,7 +6,8 @@ abstract class RoutePaths {
   static const String singUp = '/sign-up';
 
   static const String home = '/home';
-  static const String searchRecipes = '/search-recipes';
+  static const String searchRecipes = '/home/search-recipes';
+  static const String ingredient = '/home/ingredient/:recipeId';
 
   static const String savedRecipes = '/saved-recipes';
 

@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:sample_03/config/routing/route_paths.dart';
 import 'package:sample_03/presentation/home/screen/home_root.dart';
+import 'package:sample_03/presentation/ingredient/screen/ingredient_root.dart';
 import 'package:sample_03/presentation/notifications/notifications_screen.dart';
 import 'package:sample_03/presentation/profile/profile_screen.dart';
 import 'package:sample_03/presentation/root/root_screen.dart';
@@ -36,6 +37,15 @@ final router = GoRouter(
     GoRoute(
       path: RoutePaths.searchRecipes,
       builder: (context, state) => const SearchRecipesRoot(),
+    ),
+    GoRoute(
+      path: RoutePaths.ingredient,
+      builder: (context, state) {
+        final recipeId = int.parse(state.pathParameters['recipeId']!);
+        return IngredientRoot(
+          recipeId: recipeId,
+        );
+      },
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
