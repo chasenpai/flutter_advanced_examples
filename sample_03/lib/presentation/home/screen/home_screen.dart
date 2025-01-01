@@ -124,7 +124,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                     child: DishCard(
                       recipe: dish,
-                      isBookmark: true,
+                      onBookmarkTap: (recipe) {
+                        onAction(HomeAction.onBookmarkTap(recipe));
+                      },
                     ),
                   );
                 }).toList(),

@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:sample_03/core/domain/error/network_error.dart';
 import 'package:sample_03/core/domain/error/result.dart';
+import 'package:sample_03/domain/error/bookmark_error.dart';
 import 'package:sample_03/domain/error/new_recipes_error.dart';
 import 'package:sample_03/domain/model/recipe.dart';
 import 'package:sample_03/domain/use_case/get_categories_use_case.dart';
 import 'package:sample_03/domain/use_case/get_dishes_by_category_use_case.dart';
 import 'package:sample_03/domain/use_case/get_new_recipes_use_case.dart';
+import 'package:sample_03/domain/use_case/toggle_bookmark_recipe_use_case.dart';
 import 'package:sample_03/presentation/home/home_action.dart';
 import 'package:sample_03/presentation/home/home_state.dart';
 
@@ -16,14 +18,18 @@ class HomeViewModel with ChangeNotifier {
   final GetCategoriesUseCase _getCategoriesUseCase;
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
   final GetNewRecipesUseCase _getNewRecipesUseCase;
+  final ToggleBookmarkRecipeUseCase _toggleBookmarkRecipeUseCase;
+  StreamSubscription? _streamSubscription;
 
   HomeViewModel({
     required GetCategoriesUseCase getCategoriesUseCase,
     required GetDishesByCategoryUseCase getDishesByCategoryUseCase,
     required GetNewRecipesUseCase getNewRecipesUseCase,
+    required ToggleBookmarkRecipeUseCase toggleBookmarkRecipeUseCase,
   }): _getCategoriesUseCase = getCategoriesUseCase,
       _getDishesByCategoryUseCase = getDishesByCategoryUseCase,
-      _getNewRecipesUseCase = getNewRecipesUseCase {
+      _getNewRecipesUseCase = getNewRecipesUseCase,
+      _toggleBookmarkRecipeUseCase = toggleBookmarkRecipeUseCase {
       _fetchCategories();
       _fetchNewRecipes();
   }
@@ -38,7 +44,6 @@ class HomeViewModel with ChangeNotifier {
 
   void _fetchCategories() async {
     _loadingStart();
-    notifyListeners();
     final result = await _getCategoriesUseCase.execute();
     switch(result) {
       case Success<List<String>, NetworkError>():
@@ -64,18 +69,17 @@ class HomeViewModel with ChangeNotifier {
 
   Future<void> _fetchDishesByCategory(String category) async {
     _loadingStart();
-    notifyListeners();
-    final dishes = await _getDishesByCategoryUseCase.execute(category);
-    _state = _state.copyWith(
-      isLoading: false,
-      dishes: dishes,
-    );
-    notifyListeners();
+    _streamSubscription = _getDishesByCategoryUseCase.execute(category).listen((dishes) {
+      _state = _state.copyWith(
+        isLoading: false,
+        dishes: dishes,
+      );
+      notifyListeners();
+    });
   }
 
   void _fetchNewRecipes() async {
     _loadingStart();
-    notifyListeners();
     final result = await _getNewRecipesUseCase.execute();
     switch(result) {
       case Success<List<Recipe>, NewRecipesError>():
@@ -94,6 +98,40 @@ class HomeViewModel with ChangeNotifier {
     }
   }
 
+  void _onBookmarkTap(Recipe recipe) async {
+    final result = await _toggleBookmarkRecipeUseCase.execute(recipe.id);
+    switch(result) {
+      case Success<List<Recipe>, BookmarkError>():
+        _state = state.copyWith(
+          dishes: result.data,
+        );
+        notifyListeners();
+      case Failure<List<Recipe>, BookmarkError>():
+        switch(result.error) {
+          case BookmarkError.noRecipe:
+            // TODO: Handle this case.
+            throw UnimplementedError();
+          case BookmarkError.saveFailed:
+            // TODO: Handle this case.
+            throw UnimplementedError();
+          case BookmarkError.unknown:
+            // TODO: Handle this case.
+            throw UnimplementedError();
+        }
+    }
+  }
+
+  void onAction(HomeAction action) async {
+    switch(action) {
+      case OnSearchFieldTap():
+        return;
+      case OnCategorySelected():
+        _onCategorySelected(action.category);
+      case OnBookmarkTap():
+        _onBookmarkTap(action.recipe);
+    }
+  }
+
   void _loadingStart() {
     _state = _state.copyWith(
       isLoading: true,
@@ -108,13 +146,10 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void onAction(HomeAction action) async {
-    switch(action) {
-      case OnSearchFieldTap():
-        return;
-      case OnCategorySelected():
-        _onCategorySelected(action.category);
-    }
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    super.dispose();
   }
 
 }

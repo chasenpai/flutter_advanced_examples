@@ -20,6 +20,7 @@ class SavedRecipesRoot extends StatelessWidget {
         }
         return SavedRecipesScreen(
           recipes: state.recipes,
+          onAction: viewModel.onAction,
         );
       },
     );

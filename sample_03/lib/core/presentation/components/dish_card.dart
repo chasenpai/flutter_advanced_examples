@@ -6,11 +6,11 @@ import 'package:sample_03/ui/text_styles.dart';
 class DishCard extends StatelessWidget {
 
   final Recipe recipe;
-  final bool isBookmark;
+  final void Function(Recipe recipe) onBookmarkTap;
 
   const DishCard({
     required this.recipe,
-    required this.isBookmark,
+    required this.onBookmarkTap,
     super.key,
   });
 
@@ -68,17 +68,20 @@ class DishCard extends StatelessWidget {
           Positioned(
             right: 10.0,
             bottom: 10.0,
-            child: Container(
-              width: 24.0,
-              height: 24.0,
-              decoration: const BoxDecoration(
-                color: ColorStyles.white,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.bookmark_outline,
-                color: isBookmark ? ColorStyles.primary80 : ColorStyles.grey3,
-                size: 16.0,
+            child: GestureDetector(
+              onTap: () => onBookmarkTap(recipe),
+              child: Container(
+                width: 24.0,
+                height: 24.0,
+                decoration: const BoxDecoration(
+                  color: ColorStyles.white,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.bookmark_outline,
+                  color: recipe.isBookmark ? ColorStyles.primary80 : ColorStyles.grey3,
+                  size: 16.0,
+                ),
               ),
             ),
           ),

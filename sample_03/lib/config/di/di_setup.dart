@@ -14,6 +14,7 @@ import 'package:sample_03/domain/use_case/get_dishes_by_category_use_case.dart';
 import 'package:sample_03/domain/use_case/get_new_recipes_use_case.dart';
 import 'package:sample_03/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:sample_03/domain/use_case/search_recipes_use_case.dart';
+import 'package:sample_03/domain/use_case/toggle_bookmark_recipe_use_case.dart';
 import 'package:sample_03/presentation/home/home_view_model.dart';
 import 'package:sample_03/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:sample_03/presentation/search/search_recipes_view_model.dart';
@@ -65,6 +66,7 @@ void diSetup() {
   getIt.registerSingleton<GetDishesByCategoryUseCase>(
     GetDishesByCategoryUseCase(
       recipeRepository: getIt(),
+      bookmarkRepository: getIt(),
     ),
   );
   getIt.registerSingleton<GetNewRecipesUseCase>(
@@ -72,11 +74,18 @@ void diSetup() {
       recipeRepository: getIt(),
     ),
   );
+  getIt.registerSingleton<ToggleBookmarkRecipeUseCase>(
+    ToggleBookmarkRecipeUseCase(
+      recipeRepository: getIt(),
+      bookmarkRepository: getIt(),
+    ),
+  );
 
   //view model
   getIt.registerFactory<SavedRecipesViewModel>(
     () => SavedRecipesViewModel(
       getSavedRecipesUseCase: getIt(),
+      toggleBookmarkRecipeUseCase: getIt(),
     ),
   );
   getIt.registerFactory<SearchRecipesViewModel>(
@@ -90,6 +99,7 @@ void diSetup() {
       getCategoriesUseCase: getIt(),
       getDishesByCategoryUseCase: getIt(),
       getNewRecipesUseCase: getIt(),
+      toggleBookmarkRecipeUseCase: getIt(),
     ),
   );
 }

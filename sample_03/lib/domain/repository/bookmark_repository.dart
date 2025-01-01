@@ -10,4 +10,6 @@ abstract interface class BookmarkRepository {
 
   Future<void> clear();
 
+  Stream<Set<int>> bookmarksIdsStream();
+
 }
