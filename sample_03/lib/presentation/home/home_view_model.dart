@@ -8,6 +8,7 @@ import 'package:sample_03/domain/model/recipe.dart';
 import 'package:sample_03/domain/use_case/get_categories_use_case.dart';
 import 'package:sample_03/domain/use_case/get_dishes_by_category_use_case.dart';
 import 'package:sample_03/domain/use_case/get_new_recipes_use_case.dart';
+import 'package:sample_03/presentation/home/home_action.dart';
 import 'package:sample_03/presentation/home/home_state.dart';
 
 class HomeViewModel with ChangeNotifier {
@@ -27,7 +28,9 @@ class HomeViewModel with ChangeNotifier {
       _fetchNewRecipes();
   }
 
-  HomeState _state = const HomeState();
+  HomeState _state = const HomeState(
+    name: 'Cha',
+  );
   HomeState get state => _state;
 
   final _eventController = StreamController<NetworkError>(); //단발성 일 때..?
@@ -51,7 +54,7 @@ class HomeViewModel with ChangeNotifier {
     }
   }
 
-  void onCategorySelected(String category) async {
+  void _onCategorySelected(String category) async {
     _state = _state.copyWith(
       selectedCategory: category,
     );
@@ -103,6 +106,15 @@ class HomeViewModel with ChangeNotifier {
       isLoading: false,
     );
     notifyListeners();
+  }
+
+  void onAction(HomeAction action) async {
+    switch(action) {
+      case OnSearchFieldTap():
+        return;
+      case OnCategorySelected():
+        _onCategorySelected(action.category);
+    }
   }
 
 }
